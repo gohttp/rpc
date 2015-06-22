@@ -54,5 +54,8 @@ func DecodeClientResponse(r io.Reader, reply interface{}) error {
 	if c.Error != nil {
 		return fmt.Errorf("%v", c.Error)
 	}
+	if c.Result == nil {
+		return fmt.Errorf("result is null")
+	}
 	return json.Unmarshal(*c.Result, reply)
 }
